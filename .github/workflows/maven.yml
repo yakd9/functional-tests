@@ -18,7 +18,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    env:
+      MY_SECRET_KEY: ${{ secrets.PAT }}
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
@@ -34,13 +35,12 @@ jobs:
     - name: Use secret in a subsequent step
 
       run: |
-        if [ -z $MY_SECRET_KEY"  ]; then
+        if [ -z "$MY_SECRET_KEY" ]; then
           echo "MY_SECRET is not set"
         else
           echo "MY_SECRET is set"
         fi
-        env:
-        MY_SECRET: ${{ secrets.PAT }}
+        
 
     - name: Run Karate Tests
       run: mvn clean test -DapiKey=${{ secrets.PAT }}
