@@ -35,13 +35,12 @@ jobs:
     - name: Use secret in a subsequent step
 
       run: |
-        if [ -z "$MY_SECRET_KEY" ]; then
-          echo "MY_SECRET is not set"
-        else
-          echo "MY_SECRET is set"
-        fi
-        
+        echo "DEV_API_KEY=${{ secrets.KEY }}" >> .env
+        echo "DEV_DB_PASSWORD=${{ secrets.PAT }}" >> .env
 
+        - name: Verify .env contents (Mask sensitive info)
+          run: |
+            cat .env | grep "DEV_API_KEY"  # Avoid printing secrets directly
     - name: Run Karate Tests
       run: mvn clean test -DapiKey=${{ secrets.PAT }}
 
