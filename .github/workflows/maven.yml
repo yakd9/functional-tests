@@ -27,10 +27,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-      run: |
-        echo "KARATE_API_URL=https://example.com" >> $GITHUB_ENV
-        echo "KARATE_USERNAME=myuser" >> $GITHUB_ENV
-        echo "KARATE_PASSWORD=mysecret" >> $GITHUB_ENV
+
     - name: Run Karate Tests
       run: mvn clean test
 
