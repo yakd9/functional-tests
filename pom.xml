@@ -28,16 +28,14 @@
             <artifactId>karate-junit5</artifactId>
             <version>${karate.version}</version>
             <scope>test</scope>
-        </dependency>		
+        </dependency>
     </dependencies>
 
     <build>
         <testResources>
             <testResource>
-                <directory>src/test/java</directory>
-                <excludes>
-                    <exclude>**/*.java</exclude>
-                </excludes>
+                <directory>src/test/resources</directory>
+
             </testResource>
         </testResources>
         <plugins>
@@ -56,10 +54,13 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.version}</version>
                 <configuration>
-                    <argLine>-Dfile.encoding=UTF-8</argLine>
+                    <skipTests>false</skipTests> <!-- Make sure tests are not skipped -->
+                    <includes>
+                        <include>**/UsersRunner.java</include> <!-- Ensure it includes your test runner -->
+                    </includes>
                 </configuration>
             </plugin>
         </plugins>        
-    </build>       
-    
+    </build>
+
 </project>
