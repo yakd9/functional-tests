@@ -31,5 +31,11 @@ jobs:
         echo "KARATE_API_URL=https://example.com" >> $GITHUB_ENV
         echo "KARATE_USERNAME=myuser" >> $GITHUB_ENV
         echo "KARATE_PASSWORD=mysecret" >> $GITHUB_ENV
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+    - name: Run Karate Tests
+      run: mvn clean test
+
+    - name: Upload Karate Test Reports to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          folder: target/karate-reports
