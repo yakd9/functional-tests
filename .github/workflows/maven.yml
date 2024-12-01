@@ -27,6 +27,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+    - name: Access and print secret
+      run: |
+          echo "MY_SECRET_KEY is ${{ secrets.PAT }}"    
 
     - name: Run Karate Tests
       run: mvn clean test
@@ -34,5 +37,5 @@ jobs:
     - name: Upload Karate Test Reports to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.PAT }}
           folder: target/karate-reports
