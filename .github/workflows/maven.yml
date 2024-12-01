@@ -33,7 +33,7 @@ jobs:
 
     - name: Use secret in a subsequent step
       run: |
-          echo "Accessing secret: $MY_SECRET_KEY"   
+           echo "BASE_URL is set: ${{ secrets.PAT+'' }}"  
 
     - name: Run Karate Tests
       run: mvn clean test -DapiKey=${{ secrets.PAT }}
