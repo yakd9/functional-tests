@@ -32,8 +32,15 @@ jobs:
           echo "MY_SECRET_KEY=${{ secrets.PAT }}" >> $GITHUB_ENV
 
     - name: Use secret in a subsequent step
+
       run: |
-          echo "Accessing secret: $MY_SECRET_KEY"   
+        if [ -z $MY_SECRET_KEY"  ]; then
+          echo "MY_SECRET is not set"
+        else
+          echo "MY_SECRET is set"
+        fi
+        env:
+        MY_SECRET: ${{ secrets.PAT }}
 
     - name: Run Karate Tests
       run: mvn clean test -DapiKey=${{ secrets.PAT }}
