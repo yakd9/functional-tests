@@ -14,10 +14,5 @@ function fn() {
   } else if (env == 'e2e') {
     // customize
   }
-    config.apiUrl = process.env.KARATE_API_URL;
-    config.username = process.env.KARATE_USERNAME;
-    config.password = process.env.key;
-
-    karate.log('karate.env system property was:', config);
   return config;
 }
