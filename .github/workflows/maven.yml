@@ -38,8 +38,8 @@ jobs:
         echo "DEV_API_KEY=${{ secrets.KEY }}" >> .env
         echo "DEV_DB_PASSWORD=${{ secrets.PAT }}" >> .env
 
-        - name: Verify .env contents (Mask sensitive info)
-          run: |
+    - name: Verify .env contents (Mask sensitive info)
+      run: |
             cat .env | grep "DEV_API_KEY"  # Avoid printing secrets directly
     - name: Run Karate Tests
       run: mvn clean test -DapiKey=${{ secrets.PAT }}
