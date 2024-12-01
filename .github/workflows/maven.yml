@@ -36,10 +36,6 @@ jobs:
           echo "Accessing secret: $MY_SECRET_KEY"   
 
     - name: Run Karate Tests
-      run: mvn clean test  mvn clean test -DapiKey=${{ secrets.PAT }}
+      run: mvn clean test -DapiKey=${{ secrets.PAT }}
 
-    - name: Upload Karate Test Reports to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-          github_token: ${{ secrets.PAT }}
-          folder: target/karate-reports
+
