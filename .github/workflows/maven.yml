@@ -27,9 +27,13 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Access and print secret
+    - name: Set secret as environment variable
       run: |
-          echo "MY_SECRET_KEY is ${{ secrets.PAT }}"    
+          echo "MY_SECRET_KEY=${{ secrets.PAT }}" >> $GITHUB_ENV
+
+    - name: Use secret in a subsequent step
+      run: |
+          echo "Accessing secret: $MY_SECRET_KEY"   
 
     - name: Run Karate Tests
       run: mvn clean test
