@@ -60,7 +60,7 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
-           
+            echo "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" > ~/.git-credentials
             git add target/reports/karate-summary.html
             git commit -m "Add karate test summary report"
             git push origin HEAD
