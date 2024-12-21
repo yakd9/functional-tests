@@ -50,6 +50,7 @@ jobs:
     - name: Move karate-summary.html to target folder
       run: mv target/karate-reports/karate-summary.html target/reports/karate-summary.html
 
+
     # Commit and push the HTML report to the feature branch
     - name: Set up Git config with PAT
       run: |
@@ -64,3 +65,10 @@ jobs:
             git add target/reports/karate-summary.html
             git commit -m "Add karate test summary report"
             git push origin HEAD
+    - name: gh-pages
+      run: |
+            git checkout --orphan gh-pages
+            mv target/reports/karate-summary.html .
+            git add .
+            git commit -m "Add karate test summary for GitHub Pages"
+            git push origin gh-pages
