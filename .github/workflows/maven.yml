@@ -43,17 +43,3 @@ jobs:
             cat .env | grep "DEV_API_KEY"  # Avoid printing secrets directly
     - name: Run Karate Tests
       run: mvn clean test -DapiKey=${{ secrets.PAT }}
-    - name: Create target folder for reports
-      run: mkdir -p target/reports
-        
-        # Move the karate-summary.html file to the target folder
-        - name: Move karate-summary.html to target folder
-          run: mv target/karate-*.html target/reports/karate-summary.html
-
-        # Commit and push the HTML report to the feature branch
-        - name: Commit and push the report
-          run: |
-
-            git add target/reports/karate-summary.html
-            git commit -m "Add karate test summary report"
-            git push origin HEAD
