@@ -51,10 +51,16 @@ jobs:
       run: mv target/karate-reports/karate-summary.html target/reports/karate-summary.html
 
     # Commit and push the HTML report to the feature branch
-    - name: Commit and push the report
+    - name: Set up Git config with PAT
       run: |
-            git config --global user.email "kuldeep.ya9@gmail.com"
-            git config --global user.name "yakd9"
+        git config --global user.email "kuldeep.ya9@gmail.com"
+        git config --global user.name "yakd9"
+        git config --global credential.helper store
+    - name: Commit and push the report
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: |
+           
             git add target/reports/karate-summary.html
             git commit -m "Add karate test summary report"
             git push origin HEAD
