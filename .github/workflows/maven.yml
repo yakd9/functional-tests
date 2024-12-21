@@ -53,6 +53,8 @@ jobs:
     # Commit and push the HTML report to the feature branch
     - name: Commit and push the report
       run: |
+            git config --global user.email "kuldeep.ya9@gmail.com"
+            git config --global user.name "yakd9"
             git add target/reports/karate-summary.html
             git commit -m "Add karate test summary report"
             git push origin HEAD
